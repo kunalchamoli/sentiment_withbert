@@ -1,6 +1,6 @@
 # Simple Implementation Of Sentiment Classification Using Bert and Pytorch-Lightning
 
-The goal of this repo is to show to make a simple sentiment classifier using bert
+The goal of this repo is to make a simple sentiment classifier using [BERT](https://arxiv.org/pdf/1810.04805.pdf)
 
 The Libraries Mainly Used are:
 - [PyTorch-Lightning](https://pytorch-lightning.readthedocs.io/en/latest/)
@@ -24,4 +24,8 @@ pip install -r requirements.txt
 ### Train:
 ``` bash 
 python f.py
+```
+Available commands:
+```bash
+    --debug         Work only with a Single Batch, will help in faster debugging of code
 ```
