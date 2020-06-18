@@ -54,7 +54,10 @@ class IMDB_sentiment(pl.LightningModule):
         #import IPython ; IPython.embed(); exit(1)
 
     def training_step(self, batch, batch_idx):
-        import IPython ; IPython.embed(); exit(1)
+        logits = self.forward(batch['input_ids'])
+        loss = self.loss(logits, batch['label']).mean()
+        return {'loss': loss, 'log': {'train_loss': loss}}
+        
 
     def validation_step(self, batch, batch_idx):
         logits = self.forward(batch['input_ids'])
@@ -103,7 +106,8 @@ def main(_):
         default_root_dir='logs',
         gpus= (1 if th.cuda.is_available() else 0),
         max_epochs= FLAGS.epochs,
-        fast_dev_run=FLAGS.debug
+        fast_dev_run=FLAGS.debug,
+        logger=pl.loggers.TensorBoardLogger('logs/', name='imdb', version=0)
         )
 
     trainer.fit(model)
